@@ -10,7 +10,10 @@ exports.postNewProduct = async (req, res) => {
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
-        amountInStorage: req.body.amountInStorage
+        amountInStorage: req.body.amountInStorage,
+        category: req.body.category,
+        gender: req.body.gender,
+        brand: req.body.brand
     });
 
     await newProduct.save();

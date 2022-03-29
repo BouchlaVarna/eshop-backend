@@ -16,6 +16,18 @@ const productSchema = new mongoose.Schema({
     amountInStorage: {
         type: String,
         required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    brand: {
+        type: String,
+        required: true
     }
 });
 
