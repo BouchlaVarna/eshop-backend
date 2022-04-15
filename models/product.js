@@ -1,34 +1,16 @@
-const mongoose = require('mongoose');
+const {sequelize, Sequelize} = require('../db.js');
+const { DataTypes } = require('sequelize');
+const Genre = require('./genre')
 
-const productSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: String,
-        required: true
-    },
-    amountInStorage: {
-        type: String,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true
-    },
-    gender: {
-        type: String,
-        required: true
-    },
-    brand: {
-        type: String,
-        required: true
-    }
+const Product = sequelize.define('Product', {
+    name: DataTypes.STRING,
+    info: DataTypes.TEXT,
+    price: DataTypes.BIGINT,
 });
 
-module.exports = mongoose.model("Product", productSchema);
+Product.belongsToMany(Genre, { through: 'ProductGenres' })
+Genre.belongsToMany(Product, { through: 'ProductGenres' })
+
+Product.sync()
+
+module.exports = Product
